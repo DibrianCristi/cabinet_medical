@@ -36,8 +36,6 @@ public class Pacient {
         this.fisa_id = fisa_id;
     }
 
-    
-    
     public int getId() {
         return id;
     }

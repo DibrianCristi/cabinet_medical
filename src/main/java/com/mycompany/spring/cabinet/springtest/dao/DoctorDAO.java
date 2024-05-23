@@ -10,4 +10,6 @@ public interface DoctorDAO {
     public Doctor getDoctor(int id);
     public void saveDoctor(Doctor doctor);
     public void deleteDoctor(int id);
+    public List<Doctor> getAllDoctorByDepartament(int id);
+    
 }

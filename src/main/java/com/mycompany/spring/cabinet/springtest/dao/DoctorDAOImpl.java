@@ -43,4 +43,16 @@ public class DoctorDAOImpl implements DoctorDAO{
         query.setParameter("doctorid", id);
         query.executeUpdate();
     }
+    @Override
+        public List<Doctor> getAllDoctorByDepartament(int id){
+            Session session = entityManager.unwrap(Session.class);
+        
+        Query<Doctor> query = session.createQuery("from Doctor where departament_id =:Departamentid", Doctor.class);
+        query.setParameter("Departamentid", id);
+        
+        List<Doctor> allDoctorByDepartament = query.getResultList();
+
+        return allDoctorByDepartament;
+        }
+
 }
