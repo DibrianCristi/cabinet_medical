@@ -1,4 +1,3 @@
-
 package com.mycompany.spring.cabinet.springtest.dao;
 
 import com.mycompany.spring.cabinet.springtest.entity.Doctor;
@@ -10,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DoctorDAOImpl implements DoctorDAO{
+public class DoctorDAOImpl implements DoctorDAO {
+
     @Autowired
     EntityManager entityManager;
-    
+
     @Override
     public List<Doctor> getAllDoctor() {
 
@@ -23,36 +23,38 @@ public class DoctorDAOImpl implements DoctorDAO{
 
         return allDoctor;
     }
-    
+
     @Override
-    public void saveDoctor(Doctor doctor){
+    public void saveDoctor(Doctor doctor) {
         Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(doctor);
     }
-    
-        @Override
+
+    @Override
     public Doctor getDoctor(int id) {
         Session session = entityManager.unwrap(Session.class);
         Doctor doctor = session.get(Doctor.class, id);
         return doctor;
     }
-        @Override
-    public void deleteDoctor(int id){
+
+    @Override
+    public void deleteDoctor(int id) {
         Session session = entityManager.unwrap(Session.class);
         Query<Doctor> query = session.createQuery("delete from Doctor where id =:doctorid");
         query.setParameter("doctorid", id);
         query.executeUpdate();
     }
+
     @Override
-        public List<Doctor> getAllDoctorByDepartament(int id){
-            Session session = entityManager.unwrap(Session.class);
-        
+    public List<Doctor> getAllDoctorByDepartament(int id) {
+        Session session = entityManager.unwrap(Session.class);
+
         Query<Doctor> query = session.createQuery("from Doctor where departament_id =:Departamentid", Doctor.class);
         query.setParameter("Departamentid", id);
-        
+
         List<Doctor> allDoctorByDepartament = query.getResultList();
 
         return allDoctorByDepartament;
-        }
+    }
 
 }
